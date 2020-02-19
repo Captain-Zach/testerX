@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Make an auction here</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+@model Auction
+<form asp-action="CreateAuction">
+    <span asp-validation-for="Name"></span>
+    <label for="Name">Product Name</label>
+    <input asp-for="Name"><br>
+
+    <span asp-validation-for="Description"></span>
+    <label for="Description">Description</label>
+    <input asp-for="Description"><br>
+
+    <span asp-validation-for="CurrentBid"></span>
+    <label for="CurrentBid">Starting Bid</label>
+    <input asp-for="CurrentBid"><br>
+
+    <span asp-validation-for="EndDate"></span>
+    <label for="EndDate">End Date: </label>
+    <input type="date" name="EndDate">
+
+    <button>Create Auction</button>
+</form>

@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Current Auctions</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<p>Hi @ViewBag.CurrentUser.FirstName!  <a href="/logout">Logout</a></p>
+@model List<Auction>
+<table>
+    <thead>
+        <th>Product</th>
+        <th>Seller</th>
+        <th>Top Bid</th>
+        <th>Time Remaining</th>
+        <th>(action)</th>
+    </thead>
+    @foreach (var auction in Model)
+    {
+        <tr>
+            <td><a href="/auction/@auction.AuctionId">@auction.Name</a></td>
+            <td>@auction.User.FirstName</td>
+            <td>$@auction.CurrentBid</td>
+            @{var x = (auction.EndDate - DateTime.Now).Days;}
+            <td>@x days left</td>
+            <td>@if(auction.UserId == ViewBag.CurrentUser.UserId){ <a href="/delete_auction/@auction.AuctionId">Delete?</a> }</td>
+        </tr>
+    }
+</table>
+<p>Your Current Wallet amount @ViewBag.CurrentUser.Cash</p>
+<form asp-action="NewAuction"><button>New Auction</button></form>

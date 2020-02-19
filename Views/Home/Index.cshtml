@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div>
+    <h2>Login</h2>
+    <form asp-action="LoginProcess">
+        @if(ViewBag.LoginError != null) { <span>@ViewBag.LoginError</span> }
+        <label for="UserName">User Name</label>
+        <input type="text" name="UserName" id=""><br>
+    
+        <label for="Password">Password</label>
+        <input type="text" name="Password" id=""><br>
+    
+        <button>Login</button>
+    </form>
+
+</div>
+@model User
+<div>
+    <h2>Registration</h2>
+    <form asp-action="CreateUser">
+        <span asp-validation-for="UserName"></span>
+        <label for="UserName">Username</label><br>
+        <input type="text" name="UserName" id=""><br>
+        
+        <span asp-validation-for="Password"></span>
+        <label for="Password">Password</label><br>
+        <input type="text" name="Password" id=""><br>
+    
+        <span asp-validation-for="Confirm"></span>
+        <label for="Confirm">Confirm Password</label><br>
+        <input type="text" name="Confirm" id=""><br>
+    
+        <span asp-validation-for="FirstName"></span>
+        <label for="FirstName">First Name</label><br>
+        <input type="text" name="FirstName" id=""><br>
+
+        <span asp-validation-for="LastName"></span>
+        <label for="LastName">Last Name</label><br>
+        <input type="text" name="LastName" id=""><br>
+    
+        <button>Register</button>
+    </form>
+</div>

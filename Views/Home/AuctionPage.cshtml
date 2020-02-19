@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model Auction
+<div class="text-center">
+    <h1 class="display-4">@Model.Name</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<h3>Created by: @Model.User.FirstName @Model.User.LastName</h3>
+@{var x = (Model.EndDate - DateTime.Now).Days;}
+<h4>Time remaining: @x days...</h4>
+
+<p>@Model.Description</p>
+
+@{
+    
+}
+<p>Current Highest bid:  By User: @ViewBag.TargetUser.FirstName @ViewBag.TargetUser.LastName</p>
+<p>$@Model.CurrentBid</p>
+
+@if(ViewBag.Error != null){ <span>@ViewBag.Error</span> }
+<form action="/make_bid/@Model.AuctionId">
+    <input type="number" name="Bid" value="Your bid goes here..." id="">
+    <button>Bid!!</button>
+</form>
+
+<form action="/end_auction/@Model.AuctionId" method="POST"><button>End Test</button></form>
